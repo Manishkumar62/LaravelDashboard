@@ -2,9 +2,9 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Permissions') }}
+                {{ __('Roles') }}
             </h2>
-            <a href="{{ route('permissions.create') }}"
+            <a href="{{ route('roles.create') }}"
                 class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white">Create</a>
         </div>
     </x-slot>
@@ -17,24 +17,26 @@
                     <tr class="border-b">
                         <th class="px-6 py-3 text-left width-60">#</th>
                         <th class="px-6 py-3 text-left width-180">Name</th>
+                        <th class="px-6 py-3 text-left width-180">Permissions</th>
                         <th class="px-6 py-3 text-left width-180">Created</th>
                         <th class="px-6 py-3 text-center">Action</th>
                     </tr>
                 </thead>
 
                 <tbody class="bg-white">
-                    @if ($permissions->isNotEmpty())
-                        @foreach ($permissions as $permission)
+                    @if ($roles->isNotEmpty())
+                        @foreach ($roles as $role)
                             <tr class="border-b">
-                                <td class="px-6 py-3 text-left">{{ $permission->id }}</td>
-                                <td class="px-6 py-3 text-left">{{ $permission->name }}</td>
+                                <td class="px-6 py-3 text-left">{{ $role->id }}</td>
+                                <td class="px-6 py-3 text-left">{{ $role->name }}</td>
+                                <td class="px-6 py-3 text-left">{{ $role->permissions->pluck('name')->implode(', ') }}</td>
                                 <td class="px-6 py-3 text-left">
-                                    {{ \Carbon\Carbon::parse($permission->created_at)->format('d M, Y') }}</td>
+                                    {{ \Carbon\Carbon::parse($role->created_at)->format('d M, Y') }}</td>
                                 <td class="px-6 py-3 text-center">
-                                    <a href="{{ route('permissions.edit', $permission->id) }}"
+                                    {{-- <a href="{{ route('permissions.edit', $permission->id) }}"
                                         class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white hover:bg-slate-600">Edit</a>
                                     <a href="javascript:void(0);" onclick="deletePermission({{ $permission->id }})"
-                                        class="bg-red-600 text-sm rounded-md px-3 py-2 text-white hover:bg-red-500">Delete</a>
+                                        class="bg-red-600 text-sm rounded-md px-3 py-2 text-white hover:bg-red-500">Delete</a> --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -42,7 +44,7 @@
                 </tbody>
             </table>
             <div class="my-3">
-                {{ $permissions->links() }}
+                {{ $roles->links() }}
             </div>
         </div>
     </div>
