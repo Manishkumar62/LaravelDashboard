@@ -36,5 +36,11 @@ class RoleController extends Controller
             return redirect()->route('roles.create')->withErrors($validater);
         }
     }
+    public function edit($id){
+        $role = Role::findOrFail($id);
+        $hasPermissions  = $role->permissions->pluck('name');
+        dd($hasPermissions);
+        return view('roles.edit');
+    }
 
 }

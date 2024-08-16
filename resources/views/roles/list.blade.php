@@ -33,9 +33,9 @@
                                 <td class="px-6 py-3 text-left">
                                     {{ \Carbon\Carbon::parse($role->created_at)->format('d M, Y') }}</td>
                                 <td class="px-6 py-3 text-center">
-                                    {{-- <a href="{{ route('permissions.edit', $permission->id) }}"
+                                    <a href="{{ route('roles.edit', $role->id) }}"
                                         class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white hover:bg-slate-600">Edit</a>
-                                    <a href="javascript:void(0);" onclick="deletePermission({{ $permission->id }})"
+                                    {{-- <a href="javascript:void(0);" onclick="deletePermission({{ $permission->id }})"
                                         class="bg-red-600 text-sm rounded-md px-3 py-2 text-white hover:bg-red-500">Delete</a> --}}
                                 </td>
                             </tr>
